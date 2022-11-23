@@ -11,7 +11,6 @@ function toNotation(position) {
 }
 
 function getPiece(info) {
-
     return idToSquare.get(info.parentElement.id).piece
 }
 
