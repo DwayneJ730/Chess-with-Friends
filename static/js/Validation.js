@@ -1,11 +1,13 @@
 function validateMoves(thisPiece, moves) {
-    var vMoves = [];
-    for (var i = 0; i < moves.length; i++) {
-        // console.log(idToSquare.get(moves[i]).piece)
-        if (idToSquare.get(moves[i]).piece == null || idToSquare.get(moves[i]).piece.color[0] != thisPiece.color[0]) {
+    let vMoves = [];
+
+    for (let i = 0; i < moves.length; i++) {
+        let pieceOnSquare = idToSquare.get(moves[i]).piece;
+        if (pieceOnSquare === null) {
+            vMoves.push(moves[i])
+        } else if (pieceOnSquare.color[0] !== thisPiece.color[0]) {
             vMoves.push(moves[i])
         }
-
     }
     return vMoves;
 }
@@ -51,11 +53,8 @@ function allPawnMoves(obj) {
     notation = [...new Set(notation)];
 
     var vNotation = validateMoves(getPiece(obj), notation)
-    console.log(vNotation)
 
     idToSquare.get(obj.parentElement.id).piece.availableSquares = vNotation;
-    console.log(idToSquare.get(obj.parentElement.id).piece.availableSquares)
-
 }
 
 function allKnightMoves(obj) {
@@ -116,7 +115,6 @@ function allBishopMoves(obj) {
     moves = allDiagMoves(obj);
 
     idToSquare.get(obj.parentElement.id).piece.availableSquares = moves;
-    console.log(idToSquare.get(obj.parentElement.id).piece.availableSquares)
 }
 
 function allRookMoves(obj) {
@@ -128,7 +126,6 @@ function allRookMoves(obj) {
     moves = vert.concat(hor);
 
     idToSquare.get(obj.parentElement.id).piece.availableSquares = moves;
-    console.log(idToSquare.get(obj.parentElement.id).piece.availableSquares)
 }
 
 function allKingMoves(obj) {
@@ -165,11 +162,8 @@ function allKingMoves(obj) {
     notation = [...new Set(notation)];
 
     var vNotation = validateMoves(getPiece(obj), notation)
-    console.log(vNotation)
 
     idToSquare.get(obj.parentElement.id).piece.availableSquares = vNotation;
-    console.log(idToSquare.get(obj.parentElement.id).piece.availableSquares)
-
 }
 
 function allQueenMoves(obj) {
@@ -181,7 +175,6 @@ function allQueenMoves(obj) {
     moves = vert.concat(hor, diag);
 
     idToSquare.get(obj.parentElement.id).piece.availableSquares = moves;
-    console.log(idToSquare.get(obj.parentElement.id).piece.availableSquares)
 }
 
 function allVerticalMoves(info) {
@@ -265,7 +258,6 @@ function allDiagMoves(info) {
     }
 
     var vNotation = validateMoves(getPiece(info), notation)
-    console.log(vNotation)
 
     idToSquare.get(info.parentElement.id).piece.availableSquares = vNotation;
 

@@ -3,6 +3,10 @@ const droppables = document.querySelectorAll('.darkSquare, .lightSquare');
 let currentSquare = null;
 let currentPiece = null;
 
+function getSquareFromId(id) {
+    return idToSquare.get(id);
+}
+
 draggables.forEach(draggable => {
     draggable.addEventListener('dragstart', dragStart);
     draggable.addEventListener('drag', drag);
@@ -64,8 +68,6 @@ function drop(event) {
         // Check to see if there is a piece on the square
         if (newSquareParentObject) {
             if (newSquareParentObject.piece != null) {
-                console.log("Detected enemy piece");
-
                 // Since there is a enemy piece, we need to get access to the piece's parent square html element
                 let parentElement = targetSquare.parentNode;
 
